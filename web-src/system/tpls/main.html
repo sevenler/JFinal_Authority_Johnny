@@ -1,0 +1,89 @@
+
+<div ng-controller="mainCtrl">
+
+
+<header class="am-topbar  am-topbar-inverse admin-header">
+  <div class="am-topbar-brand">
+    <strong></strong> <small>后台管理模板</small>
+  </div>
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+   <ul   class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+
+      <!-- <li><a href="javascript:;"><span class="am-icon-envelope-o"></span> 收件箱 <span class="am-badge am-badge-warning">5</span></a></li> -->
+      <li class="am-dropdown"    am-dropdown  >
+        <a class="am-dropdown-toggle"  href="javascript:;">
+          <span class="am-icon-users"></span>  {{ user.name }} <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a href="#/system/user.edit?id={{user.id}}"><span class="am-icon-user"></span> 资料</a></li>
+          <!-- <li><a ><span class="am-icon-cog"></span> 设置</a></li> -->
+          <li><a   href="javascript:;" ng-click="logout()"><span class="am-icon-power-off"></span> 退出</a></li>
+        </ul>
+      </li>
+      
+      <li class="am-hide-sm-only">
+    <a href="javascript:;"   am-fullscreen >
+    <span class="am-icon-arrows-alt"></span> 
+   	<span  am-fullscreen-text >开启全屏</span></a></li>
+
+    </ul>
+  </div>
+
+</header>
+
+<div class="am-cf admin-main">
+
+	<!-- sidebar start -->
+	<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+		<div class="am-offcanvas-bar admin-offcanvas-bar">
+			 <!-- <li><a  href="#/"><span class="am-icon-home"></span> 首页</a></li> -->
+
+			<ul class="am-list admin-sidebar-list"  ng-repeat="t in tree">
+			
+			 <li ng-if="t.children.length==0">
+			 <a  href="{{t.attributes.url}}"><span class="{{t.iconCls}}">
+			 </span> {{t.text}}</a></li>
+			  <li ng-if="t.children.length>0" class="admin-parent" >
+					<a class="am-cf" data-am-collapse="{target: '#cv'+{{t.id}} }">
+					
+					<span class="{{t.iconCls}}"></span> {{t.text}} <span class="am-icon-angle-right am-fr am-margin-right"></span></a>
+					
+					<ul class="am-list am-collapse admin-sidebar-sub am-in" id="cv{{t.id}}"   >
+						<li ng-repeat="c in t.children">
+						<a href="{{c.attributes.url}}"><span class="{{c.iconCls}}"></span> {{c.text}}
+						<span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span></a></li>
+						</li>
+					</ul>
+			 <li>
+			</li>   
+			</ul>
+			<div class="am-panel am-panel-default admin-sidebar-panel">
+				<div class="am-panel-bd">
+					<p><span class="am-icon-bookmark"></span> 公告</p>
+					<p>时光静好，与君语；细水流年，与君同。</p>
+				</div>
+			</div>
+	 
+
+		</div>
+	</div>
+	<!-- sidebar end -->
+	<!-- content start -->
+<div class="admin-content ">
+  <div  ui-view="index"  ></div>
+<!-- content end -->
+</div>
+
+<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+</div>
+<footer>
+	<hr>
+	<p class="am-padding-right">© 2014 12shu. Licensed under Apache license.</p>
+</footer>
+
+
+ 

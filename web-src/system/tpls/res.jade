@@ -1,0 +1,56 @@
+div(ng-controller='resCtrl')
+  include res.modal.html
+  .am-cf.am-padding
+    .am-fl.am-cf
+      strong.am-text-primary.am-text-lg 资源
+      |  / 
+      small Res
+  .am-g
+    .am-u-md-6.am-cf
+      .am-fl.am-cf
+        .am-btn-toolbar.am-fl
+          .am-btn-group.am-btn-group-xs
+            button.am-btn.am-btn-secondary(type='button', ng-click='add()')
+              span.am-icon-plus
+              |  新增
+            button.am-btn.am-btn-warning(type='button'  ng-click='batchDelete()')
+              span.am-icon-trash-o
+              |  删除
+            button.am-btn.am-btn-default(type='button', ng-show='showBack', ng-click='back()')
+              span.am-icon-level-up
+              |  后退
+  .am-g
+    .am-u-sm-12
+      form.am-form
+        table.table.am-table.am-table-striped.am-table-hover.table-main.am-table-bordered.am-table-radius(ng-table="tableParams")
+            tr(ng-repeat='r in $data')
+              td(header="'ng-table/headers/checkbox.html'" style="text-align: left" width="28")
+                input(type='checkbox' ng-model="checkboxes.items[r.id]"   )
+              td( data-title="'id'" header-class="'text-left'" filter="{ 'id': 'text' }") {{r.id}}
+              td( data-title="'名称'" header-class="'text-left'" )
+                span(ng-if='r.type==2') {{r.name}}
+                a(ng-if='r.type==1', ng-click='go(r.id)') {{r.name}}
+              td( data-title="'类型'" header-class="'text-left'" ) 
+                span(ng-if='r.type==1') 菜单
+                span(ng-if='r.type==2') 功能
+              td( data-title="'上级菜单'" header-class="'text-left'"  ) {{parent.name}}
+              td( data-title="'描述'" header-class="'text-left'" ) {{r.des}}
+              td( data-title="'修改日期'" header-class="'text-left'"  ) {{r.modifydate}}
+              td( data-title="'操作'" header-class="'text-left'")
+                .am-btn-toolbar
+                  .am-btn-group.am-btn-group-xs
+                    button.am-btn.am-btn-default.am-btn-xs.am-text-secondary(ng-click="edit(r.id)")
+                      span.am-icon-pencil-square-o
+                      |  编辑
+                    button.am-btn.am-btn-default.am-btn-xs.am-text-danger(ng-click="delete(r.id)" )
+                      span.am-icon-trash-o
+                      |  删除
+        script(type="text/ng-template" id="ng-table/headers/checkbox.html")
+          input(type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox" )
+     
+    .am-u-sm-4.am-u-sm-centered(ng-show="list.length==0") 还没有数据 赶紧添加吧~
+
+
+
+
+

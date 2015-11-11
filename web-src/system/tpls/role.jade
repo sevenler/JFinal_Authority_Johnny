@@ -1,0 +1,41 @@
+div(ng-controller='roleCtrl')
+  .am-cf.am-padding
+    .am-fl.am-cf
+      strong.am-text-primary.am-text-lg 角色
+      |  / 
+      small Role
+  .am-g
+    .am-u-md-6.am-cf
+      .am-fl.am-cf
+        .am-btn-toolbar.am-fl
+          .am-btn-group.am-btn-group-xs
+            a.am-btn.am-btn-secondary(href='#/system/role.edit' ng-if="hasPermission('/system/role/save')")
+              span.am-icon-plus
+              |  新增
+  .am-g
+    .am-u-sm-12
+      form.am-form.am-scrollable-horizontal
+        table.table.am-table.am-table-striped.am-table-hover.table-main.am-table-bordered.am-table-radius(ng-table="tableParams")
+            tr(ng-repeat='r in $data')
+              td( data-title="'id'" header-class="'text-left'" filter="{ 'id': 'text' }") {{r.id}}
+              td( data-title="'名称'" header-class="'text-left'"  )
+                a(ng-click="edit(r)") {{r.name}}
+              td( data-title="'描述'" header-class="'text-left'" ) {{r.des}}
+              td( data-title="'可访问资源'" width="220px"  header-class="'text-left'" ) 
+               .am-text-truncate(style='width: 200px; padding: 5px;' am-popover  content="{{r.res_names}}"  trigger='hover' show="true") {{r.res_names}}
+              td( data-title="'创建日期'" header-class="'text-left'"  ) {{r.createdate}}
+              td( data-title="'操作'" header-class="'text-left'")
+                .am-btn-toolbar
+                  .am-btn-group.am-btn-group-xs
+                    button.am-btn.am-btn-default.am-btn-xs.am-text-secondary(ng-click="edit(r)" ng-if="hasPermission('/system/role/save')")
+                      span.am-icon-pencil-square-o
+                      |  设置
+                    button.am-btn.am-btn-default.am-btn-xs.am-text-danger(ng-click="delete(r.id)" ng-if="hasPermission('/system/role/delete')")
+                      span.am-icon-trash-o
+                      |  删除
+    .am-u-sm-4.am-u-sm-centered(ng-show="list.length==0") 还没有数据 赶紧添加吧~
+
+
+
+
+

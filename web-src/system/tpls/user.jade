@@ -1,0 +1,46 @@
+div(ng-controller='userCtrl')
+  .am-cf.am-padding
+    .am-fl.am-cf
+      strong.am-text-primary.am-text-lg 用户
+      |  / 
+      small User
+  .am-g
+    .am-u-md-6.am-cf
+      .am-fl.am-cf
+        .am-btn-toolbar.am-fl
+          .am-btn-group.am-btn-group-xs
+            a.am-btn.am-btn-secondary(href="#/system/user.edit" ng-if="hasPermission('/system/user/save')")
+              span.am-icon-plus
+              |  新增
+  .am-g
+    .am-u-sm-12
+      form.am-form.am-scrollable-horizontal
+        table.table.am-table.am-table-striped.am-table-hover.table-main.am-table-bordered.am-table-radius(ng-table="tableParams")
+            tr(ng-repeat='r in $data')
+              td( data-title="'id'" header-class="'text-left'" filter="{ 'id': 'text' }") {{r.id}}
+              td( data-title="'头像'" header-class="'text-left'" )
+                img(ng-src="{{r.icon}}" width="48" )
+              td( data-title="'用户名'" header-class="'text-left'" )
+                a(href="#/system/user.edit?id={{r.id}}") {{r.name}}
+              td( data-title="'邮箱'" header-class="'text-left'"  ) {{r.email}}
+              td( data-title="'角色'" header-class="'text-left'"  ) {{r.role_names}}
+              td( data-title="'状态'" header-class="'text-left'"  ) {{r.status |userStatus}}
+              td( data-title="'创建日期'" header-class="'text-left'"  ) {{r.createdate}}
+              td( data-title="'操作'" header-class="'text-left'")
+                .am-btn-toolbar
+                  .am-btn-group.am-btn-group-xs
+                    button.am-btn.am-btn-default.am-btn-xs.am-text-secondary(ng-click="edit(r)" ng-if="hasPermission('/system/user/save')")
+                      span.am-icon-pencil-square-o
+                      |  编辑
+                    button.am-btn.am-btn-default.am-btn-xs.am-text-danger(ng-click="freeze(r)" ng-show="r.id!=1" ng-if="hasPermission('/system/user/freeze')" )
+                      span.am-icon-unlock
+                      |  冻结
+                    button.am-btn.am-btn-default.am-btn-xs.am-text-danger(ng-click="delete(r.id)" ng-show="r.id!=1" ng-if="hasPermission('/system/user/delete')" )
+                      span.am-icon-trash-o
+                      |  删除
+    .am-u-sm-4.am-u-sm-centered(ng-show="list.length==0") 还没有数据 赶紧添加吧~
+
+
+
+
+

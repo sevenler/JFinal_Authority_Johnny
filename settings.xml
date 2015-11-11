@@ -1,0 +1,66 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+<!--
+ localRepository | The path to the local repository maven will use to 
+		store artifacts. | | Default: ${user.home}/.m2/repository 
+ <localRepository>C:\Users\12\.m2\repository</localRepository>
+-->
+
+ 
+
+<mirrors>
+
+ <mirror>     
+       <id>nexus-releases</id>     
+       <mirrorOf>*</mirrorOf>     
+       <url>http://218.244.156.128:8081/nexus/content/groups/public</url>     
+     </mirror>  
+	 
+     <mirror>     
+       <id>nexus-snapshots</id>     
+       <mirrorOf>*</mirrorOf>     
+       <url>http://218.244.156.128:8081/nexus/content/groups/public-snapshots</url>     
+     </mirror>     
+  </mirrors>
+  <profiles>
+
+   <profile>    
+
+       <id>nexus</id>    
+      <repositories>    
+         <repository>    
+           <id>nexus-releases</id>    
+           <url>http://nexus-releases</url>    
+           <releases><enabled>true</enabled></releases>    
+           <snapshots><enabled>true</enabled></snapshots>    
+         </repository>    
+         <repository>    
+           <id>nexus-snapshots</id>    
+           <url>http://nexus-snapshots</url>    
+           <releases><enabled>true</enabled></releases>    
+           <snapshots><enabled>true</enabled></snapshots>    
+         </repository>    
+       </repositories>    
+       <pluginRepositories>    
+          <pluginRepository>    
+                 <id>nexus-releases</id>    
+                  <url>http://nexus-releases</url>    
+                  <releases><enabled>true</enabled></releases>    
+                  <snapshots><enabled>true</enabled></snapshots>    
+                </pluginRepository>    
+                <pluginRepository>    
+                 <id>nexus-snapshots</id>    
+                   <url>http://nexus-snapshots</url>    
+                 <releases><enabled>true</enabled></releases>    
+                  <snapshots><enabled>true</enabled></snapshots>    
+              </pluginRepository>    
+          </pluginRepositories>    
+     </profile> 
+
+  </profiles>
+
+ <activeProfiles>    
+        <activeProfile>nexus</activeProfile>    
+   </activeProfiles>  
+
+
+</settings>

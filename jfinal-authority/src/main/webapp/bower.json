@@ -1,0 +1,20 @@
+{
+  "name": "admin",
+  "version": "0.0.0",
+  "authors": [
+    "476335667@qq.com <476335667@qq.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ui-select": "*",
+    "amazeui": "~2.2.1",
+    "bootstrap": "~3.3.2"
+  }
+}

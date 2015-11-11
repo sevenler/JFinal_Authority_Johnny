@@ -1,0 +1,11 @@
+jdbcUrl = 
+user = 
+password =
+dbType=mysql
+devMode = true
+decrypt=true
+
+#db.txt 配置格式 请输入你自己的配置 然后修改后缀名为 txt
+
+
+

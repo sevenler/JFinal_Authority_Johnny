@@ -1,0 +1,57 @@
+
+<div class="am-popup"   am-modal  show="showModal">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title">{{title}}</h4>
+      <span data-am-modal-close
+            class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+    
+    <form   name="form" method='post'  class="am-form   am-form-horizontal"  ng-submit="post()"     data-am-validator>
+     <fieldset>
+
+
+      <div class="am-form-group " >
+      <label  >资源名：</label>
+      <input type="text"  minlength="1"    ng-model="f.name"  maxlength="10" placeholder="输入资源名（10个字符以内）" required/>
+      </div>
+      <div class="am-form-group " >
+      <label >路径：</label>
+      <input type="text"   minlength="1"   ng-model="f.url"  placeholder="输入路径url" required/>
+      </div>
+      
+      <div class="am-form-group" >
+      <label  >Icon: </label>
+      <ui-select ng-model="f.icon"   theme="bootstrap" ng-disabled="disabled" style="min-width: 100px;"  >
+      <ui-select-match placeholder="选择资源图标"> {{$select.selected.name}}</ui-select-match>
+      <ui-select-choices repeat="i in icons ">
+       <span ng-class="i.name">  {{i.name}} </span>
+      </ui-select-choices>
+     </ui-select>
+     </div>
+
+      <div class="am-form-group " >
+      <label >排序：</label>
+      <input type="number"   min="1" max="99" ng-model="f.seq"   placeholder="输入排序(范围 1~99)" required/>
+      </div>
+      <div class="am-form-group" >
+        <label  >类别: </label>
+        <select   required ng-model="f.type"   >
+        <option value="1">菜单</option>
+        <option value="2">功能</option>
+      </select>
+     </div>
+    
+    <div class="am-form-group">
+      <label for="doc-vld-ta-2">描述：</label>
+      <textarea id="doc-vld-ta-2"  ng-model="f.des"   maxlength="20">{{f.des}}</textarea>
+    </div>
+
+    <button class="am-btn am-btn-secondary"  ng-disabled="form.$invalid"     type="submit">提交</button>
+     </fieldset>
+   </form>
+
+    </div>
+  </div>
+</div>

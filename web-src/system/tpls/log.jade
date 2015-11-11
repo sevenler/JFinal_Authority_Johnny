@@ -1,0 +1,52 @@
+div(ng-controller='logCtrl')
+  .am-cf.am-padding
+    .am-fl.am-cf
+      strong.am-text-primary.am-text-lg 操作记录
+      |  / 
+      small Log
+
+  .am-g
+    .am-u-sm-12
+      .am-panel.am-panel-default
+        .am-panel-bd
+          .am-g
+       
+            .am-u-sm-12.am-u-md-4
+              .am-input-group.am-datepicker-date(am-datepicker  data='dateStart')
+                input.am-form-field(type='text', placeholder='开始日期', readonly     )
+                span.am-input-group-btn.am-datepicker-add-on
+                  button.am-btn.am-btn-warning(type='button')
+                    span.am-icon-calendar
+            .am-u-sm-12.am-u-md-4
+              .am-input-group.am-datepicker-date(am-datepicker data='dateEnd')
+                input.am-form-field(type='text', placeholder='结束日期', readonly   )
+                span.am-input-group-btn.am-datepicker-add-on
+                  button.am-btn.am-btn-warning(type='button')
+                    span.am-icon-calendar
+            .am-u-sm-12.am-u-md-2
+              a.am-btn.am-btn-warning.am-btn-block(ng-click="setDate()")
+                span
+                |  确定
+            .am-u-sm-12.am-u-md-2
+              a.am-btn.am-btn-secondary.am-btn-block(ng-click="showChart()")
+                span
+                |  切换
+      div.am-u-sm-12(id="main"  style="height:500px" ng-show="chart")
+      form.am-form.am-scrollable-horizontal(ng-show='!chart')
+        table.table.am-table.am-table-striped.am-table-hover.table-main.am-table-bordered.am-table-radius(ng-table="tableParams")
+            tr(ng-repeat='r in $data')
+              td( data-title="'id'" header-class="'text-left'" filter="{ 'id': 'text' }") {{r.id}}
+              td( data-title="'资源名'" header-class="'text-left'" ) {{r.res.name}}
+              td( data-title="'url'" header-class="'text-left'" ) {{r.url}}
+              td( data-title="'来源'" header-class="'text-left'" ) {{r.from}}
+              td( data-title="'浏览器'" header-class="'text-left'" ) {{r.browser}}
+              td( data-title="'ip'" header-class="'text-left'" ) {{r.ip}}
+              td( data-title="'创建日期'" header-class="'text-left'"  ) {{r.date}}
+              td( data-title="'操作'" header-class="'text-left'") {{r.operation | optionType}}
+ 
+    .am-u-sm-4.am-u-sm-centered(ng-show="list.length==0") 还没有数据 赶紧添加吧~
+
+
+
+
+

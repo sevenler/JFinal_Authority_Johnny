@@ -1,0 +1,36 @@
+div(ng-controller='loginCtrl' )
+  .header
+    .am-g
+      h1 Login
+    hr
+  .am-g
+    .am-u-lg-6.am-u-md-8.am-u-sm-centered
+      form.am-form(am-validator='', method='post'  ng-submit='login()',)
+        fieldset
+          input(hidden='', ng-model='modulus')
+          input(hidden='', ng-model='exponent')
+          label(translate="login.email")  
+          input(type='email', ng-model='email', placeholder="{{'login.email.placeholder' | translate}}", autofocus='', required)
+          br
+          label(translate="login.pwd")
+          input(type='password', ng-model='pwd', ui-keyup="{'enter':'login($event)'}", placeholder="{{'login.pwd.placeholder'|translate}}", value='', required)
+          br
+          div(ng-show="captcha"   )
+            label(translate="login.captcha") 
+            img.am-margin-left(ng-src='{{captchaUrl}}' ui-event="{ click : 'changeCaptcha()' }")
+            br
+            input(type='text', ng-model='code', ui-keyup="{'enter':'login($event)'}", placeholder="{{'login.captcha.placeholder'|translate}}", value='')
+          br
+          label.am-text-warning {{msg}}
+          br
+          label 
+            input(type='checkbox', ng-model='remember')
+            |          {{'login.remember'|translate}}
+          br
+          .am-cf
+            input.am-btn.am-btn-primary.am-btn-sm.am-fl(type='submit', value="{{'login.login'|translate}}", ng-disabled='!email||!pwd')
+            input.am-btn.am-btn-default.am-btn-sm.am-fr(type='button', value="{{'login.pwd.forget'|translate}}" ng-click="alert=!alert")
+      hr
+      p © 2015  Inc. Licensed under Apache license.
+      div(am-alert title="{{'login.pwd.forget'|translate}}" content="{{'login.admin'|translate}}"  show="alert"  )  
+     

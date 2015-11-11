@@ -1,0 +1,57 @@
+<div ng-controller="resCtrl">
+<div class="am-popup"   am-modal  show="showModal">
+  <div class="am-popup-inner">
+    <div class="am-popup-hd">
+      <h4 class="am-popup-title">{{title}}</h4>
+      <span data-am-modal-close
+            class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+    
+    <form   name="form" method='post'  class="am-form   am-form-horizontal"  ng-submit="post()"     data-am-validator>
+     <fieldset>
+
+
+      <div class="am-form-group " >
+      <label  >资源名：</label>
+      <input type="text"  minlength="1"    ng-model="f.name"  maxlength="10" placeholder="输入资源名（10个字符以内）" required/>
+      </div>
+      <div class="am-form-group " >
+      <label >路径：</label>
+      <input type="text"   minlength="1"   ng-model="f.url"  placeholder="输入路径url" required/>
+      </div>
+      
+      <div class="am-form-group" >
+      <label  >Icon: </label>
+      <ui-select ng-model="f.icon"   theme="bootstrap" ng-disabled="disabled" style="min-width: 100px;"  >
+      <ui-select-match placeholder="选择资源图标"> {{$select.selected.name}}</ui-select-match>
+      <ui-select-choices repeat="i in icons ">
+       <span ng-class="i.name">  {{i.name}} </span>
+      </ui-select-choices>
+     </ui-select>
+     </div>
+
+      <div class="am-form-group " >
+      <label >排序：</label>
+      <input type="number"   min="1" max="99" ng-model="f.seq"   placeholder="输入排序(范围 1~99)" required/>
+      </div>
+      <div class="am-form-group" >
+        <label  >类别: </label>
+        <select   required ng-model="f.type"   >
+        <option value="1">菜单</option>
+        <option value="2">功能</option>
+      </select>
+     </div>
+    
+    <div class="am-form-group">
+      <label for="doc-vld-ta-2">描述：</label>
+      <textarea id="doc-vld-ta-2"  ng-model="f.des"   maxlength="20">{{f.des}}</textarea>
+    </div>
+
+    <button class="am-btn am-btn-secondary"  ng-disabled="form.$invalid"     type="submit">提交</button>
+     </fieldset>
+   </form>
+
+    </div>
+  </div>
+</div><div class="am-cf am-padding"><div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">资源</strong> / <small>Res</small></div></div><div class="am-g"><div class="am-u-md-6 am-cf"><div class="am-fl am-cf"><div class="am-btn-toolbar am-fl"><div class="am-btn-group am-btn-group-xs"><button type="button" ng-click="add()" class="am-btn am-btn-secondary"><span class="am-icon-plus"></span> 新增</button><button type="button" ng-click="batchDelete()" class="am-btn am-btn-warning"><span class="am-icon-trash-o"></span> 删除</button><button type="button" ng-show="showBack" ng-click="back()" class="am-btn am-btn-default"><span class="am-icon-level-up"></span> 后退</button></div></div></div></div></div><div class="am-g"><div class="am-u-sm-12"><form class="am-form"><table ng-table="tableParams" class="table am-table am-table-striped am-table-hover table-main am-table-bordered am-table-radius"><tr ng-repeat="r in $data"><td header="'ng-table/headers/checkbox.html'" style="text-align: left" width="28"><input type="checkbox" ng-model="checkboxes.items[r.id]"/></td><td data-title="'id'" header-class="'text-left'" filter="{ 'id': 'text' }">{{r.id}}</td><td data-title="'名称'" header-class="'text-left'"><span ng-if="r.type==2">{{r.name}}</span><a ng-if="r.type==1" ng-click="go(r.id)">{{r.name}}</a></td><td data-title="'类型'" header-class="'text-left'"> <span ng-if="r.type==1">菜单</span><span ng-if="r.type==2">功能</span></td><td data-title="'上级菜单'" header-class="'text-left'">{{parent.name}}</td><td data-title="'描述'" header-class="'text-left'">{{r.des}}</td><td data-title="'修改日期'" header-class="'text-left'">{{r.modifydate}}</td><td data-title="'操作'" header-class="'text-left'"><div class="am-btn-toolbar"><div class="am-btn-group am-btn-group-xs"><button ng-click="edit(r.id)" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</button><button ng-click="delete(r.id)" class="am-btn am-btn-default am-btn-xs am-text-danger"><span class="am-icon-trash-o"></span> 删除</button></div></div></td></tr></table><script type="text/ng-template" id="ng-table/headers/checkbox.html"><input type="checkbox" ng-model="checkboxes.checked" id="select_all" name="filter-checkbox"/></script></form></div><div ng-show="list.length==0" class="am-u-sm-4 am-u-sm-centered">还没有数据 赶紧添加吧~</div></div></div>

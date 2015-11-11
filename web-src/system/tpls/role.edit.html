@@ -1,0 +1,44 @@
+<div ng-controller="roleEditCtrl">
+
+<div class="am-cf am-padding">
+  <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">{{title}}</strong> / <small>Role</small></div>
+</div>
+<hr/>
+<div class="am-g">
+    <form am-validator-tooptip class="am-form am-form-horizontal" name="form" ng-submit="submit()"   >
+ 
+    <div class="am-u-sm-12 am-u-md-10 ">
+
+      <div class="am-form-group">
+        <label  class="am-u-sm-3 am-form-label">角色名</label>
+        <div class="am-u-sm-9">
+          <input type="text" ng-model="f.name" placeholder="角色名 " ng-readonly="readonly" required>
+        </div>
+      </div>
+      
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label">描述 </label>
+        <div class="am-u-sm-9">
+          <textarea class="" rows="5" ng-model="f.des" placeholder="输入描述">{{f.des}}</textarea>
+        </div>
+      </div>
+
+       <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label">权限设置</label>
+       <div class="am-u-sm-9 ">
+       <ul  ztree class="ztree" obj="ztree" setting="setting" znodes="znodes"></ul>
+       </div>
+      </div>
+
+        <div class="am-form-group">
+        <div class="am-u-sm-9 am-u-sm-push-3">
+          <button type="submit" ng-disabled='form.$invalid'  class="am-btn am-btn-primary">保存</button>
+        </div>
+       </div>
+      </div>
+    </form>
+</div>
+</div>
+
+
+ 

@@ -1,0 +1,5 @@
+/jfinal-authority/src/main/resources/db.txt
+/jfinal-authority/target
+/jbase/target
+
+*.DS_Store

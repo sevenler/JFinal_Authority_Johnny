@@ -1,0 +1,20 @@
+{
+  "login" : {
+    "email" : "邮箱:",
+    "email.placeholder":"请输入登录邮箱",
+    "pwd":"密码:",
+    "pwd.placeholder":"请输入密码",
+    "pwd.forget":"忘记密码 ^_^? ",
+    "remember":"记住帐号",
+    "login":"登 录",
+    "admin":"请联系管理员",
+    "captcha":"验证码:",
+    "captcha.placeholder":"请输入验证码"
+  },
+  "main":{
+
+  },
+  "index":{
+    
+  }
+}

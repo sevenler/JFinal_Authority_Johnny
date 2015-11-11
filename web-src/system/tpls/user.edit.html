@@ -1,0 +1,169 @@
+
+<div ng-controller="userEditCtrl">
+
+<div>
+<div class="am-modal am-modal-no-btn" tabindex="-1" am-modal  show="modal">
+  <div class="am-modal-dialog">
+    <div class="am-modal-bd">
+<div class="am-panel am-panel-success">
+ <div class="am-panel-hd">选择头像</div>
+ <div class="am-panel-bd">
+
+  <ul class="am-avg-sm-3 am-avg-md-4 am-avg-lg-5 am-thumbnails" >
+    <li><img  width="64" class="am-thumbnail" ng-src="/system/static/i/1.jpg"  ng-click="setIcon(1)" /></li>
+    <li><img  width="64" class="am-thumbnail" ng-src="/system/static/i/3.jpg"  ng-click="setIcon(3)" /></li>
+    <li><img  width="64" class="am-thumbnail" ng-src="/system/static/i/4.jpg"  ng-click="setIcon(4)"/></li>
+    <li><img  width="64" class="am-thumbnail" ng-src="/system/static/i/5.jpg"  ng-click="setIcon(5)"/></li>
+    <li><img  width="64" class="am-thumbnail" ng-src="/system/static/i/6.jpg"  ng-click="setIcon(6)"/></li>
+    <li><img  width="64" class="am-thumbnail" ng-src="/system/static/i/7.jpg"  ng-click="setIcon(7)"/></li>
+    <li><img  width="64" class="am-thumbnail" ng-src="/system/static/i/8.jpg"  ng-click="setIcon(8)"/></li>
+    <li><img  width="64"class="am-thumbnail" ng-src="/system/static/i/9.jpg"  ng-click="setIcon(9)"/></li>
+    <li><img  width="64"class="am-thumbnail" ng-src="/system/static/i/10.jpg"  ng-click="setIcon(10)" /></li>
+    <li><img  width="64"class="am-thumbnail" ng-src="/system/static/i/11.jpg"  ng-click="setIcon(11)"/></li>
+    <li><img  width="64"class="am-thumbnail" ng-src="/system/static/i/12.jpg"  ng-click="setIcon(12)"/></li>
+    <li><img  width="64"class="am-thumbnail" ng-src="/system/static/i/13.jpg"  ng-click="setIcon(13)"/></li>
+    <li><img  width="64"class="am-thumbnail" ng-src="/system/static/i/14.jpg"  ng-click="setIcon(14)"/></li>
+    <li><img  width="64"class="am-thumbnail" ng-src="/system/static/i/15.jpg"  ng-click="setIcon(15)"/></li>
+    <li><img  width="64"class="am-thumbnail" ng-src="/system/static/i/16.jpg"  ng-click="setIcon(16)"/></li>
+  </ul>
+
+
+</div>
+</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="am-modal" tabindex="-1"  am-modal  show="modalEmail"  ng-submit="valEmail()">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">验证邮箱</div>
+    <div class="am-modal-bd">
+      
+  <form name="form2" am-validator>
+      <div class="am-panel am-panel-defult">
+      <div class="am-panel-bd">
+      <input class="am-form-field  " ng-model="val" type="text" placeholder="验证码已发送到 {{f.email}} 请输入验证码"  required>
+       <br/>
+       <button  type="button" ng-click="reSendEmail()" 
+       class="am-btn am-btn-primary am-btn-block " ng-disabled="resend" >没有收到重新发送 {{time}}</button>
+      </div>
+     </div>
+        <div class="am-btn-group am-btn-group-justify">
+            <a class="am-btn am-btn-default" role="button" ng-click="modalEmail=false">取消</a>
+             <button type="submit" class="am-btn am-btn-warning"   ng-disabled="form2.$invalid">确定</a>
+        </div>
+   </form>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="am-modal" tabindex="-1"  am-modal  show="modalPwd"  ng-submit="modifyPwd()">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">修改密码</div>
+    <div class="am-modal-bd">
+      
+  <form name="form3" am-validator>
+      <div class="am-panel am-panel-defult">
+      <div class="am-panel-bd">
+       <input class="am-form-field  " ng-model="pwd" type="password" placeholder="请输入新密码"  required>
+       <br/>
+      <input class="am-form-field  " ng-model="val" type="text" placeholder="验证码已发送到 {{f.email}} 请输入验证码"  required>
+       <br/>
+       <button  type="button" ng-click="reSendEmail(f.email)" 
+       class="am-btn am-btn-primary am-btn-block " ng-disabled="resend" >没有收到重新发送 {{time}}</button>
+      </div>
+     </div>
+        <div class="am-btn-group am-btn-group-justify">
+            <a class="am-btn am-btn-default" role="button" ng-click="modalPwd=false">取消</a>
+             <button type="submit" class="am-btn am-btn-warning"   ng-disabled="form3.$invalid">确定</a>
+        </div>
+   </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="am-cf am-padding">
+  <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">{{title}}</strong> / <small>Information</small></div>
+</div>
+<hr/>
+<div class="am-g">
+    <form am-validator-tooptip class="am-form am-form-horizontal" name="form" ng-submit="submit()"  validate='checkEmail(v)' >
+
+  <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+    <div class="am-panel am-panel-default">
+      <div class="am-panel-bd">
+        <div class="am-g">
+          <div class="am-u-md-12">
+            <img class="am-img-circle am-img-thumbnail" 
+            ng-src="{{f.icon}}" ng-click="modal=true" alt=""/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+
+        <div class="am-form-group" ng-if="f.id">
+        <label class="am-u-sm-3 am-form-label">电子邮件 </label>
+        <div class="am-u-sm-9">
+          {{f.email}}
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label  class="am-u-sm-3 am-form-label">用户名</label>
+        <div class="am-u-sm-9">
+          <input type="text" ng-model="f.name" placeholder="用户名 / Name" required>
+        </div>
+      </div>
+       <div class="am-form-group" ng-if="!f.id">
+        <label  class="am-u-sm-3 am-form-label">密码</label>
+        <div class="am-u-sm-9">
+          <input type="password"  minlength="5" ng-model="f.pwd" placeholder="密码 / Pwd" required>
+        </div>
+      </div>
+
+      <div class="am-form-group" ng-if="!f.id">
+        <label class="am-u-sm-3 am-form-label">电子邮件 </label>
+        <div class="am-u-sm-9">
+          <input type="email" class="email" ng-model="f.email" placeholder="输入你的电子邮件 / Email" required   
+          data-foolish-msg="请填写未注册过的邮箱" >
+        </div>
+      </div>
+    
+      <div class="am-form-group">
+        <label  class="am-u-sm-3 am-form-label">电话 </label>
+        <div class="am-u-sm-9">
+          <input type="number" minlength="7" maxlength="13" ng-model="f.phone" placeholder="输入你的电话号码 / Telephone" required>
+        </div>
+      </div>
+
+      <div class="am-form-group">
+        <label  class="am-u-sm-3 am-form-label">角色 </label>
+        <div class="am-u-sm-9">
+          <select   ng-model="f.role_ids"   ng-options="r.id as r.name for r in roles">
+            <option value="">选择角色</option>
+           </select>
+        </div>
+      </div>
+      <div class="am-form-group">
+        <label class="am-u-sm-3 am-form-label">描述 </label>
+        <div class="am-u-sm-9">
+          <textarea class="" rows="5" ng-model="f.des" placeholder="输入描述">{{f.des}}</textarea>
+        </div>
+      </div>
+      <div class="am-form-group">
+        <div class="am-u-sm-9 am-u-sm-push-3">
+          <button type="button" ng-click="showModalPwd()"   ng-show="f.id" class="am-btn am-btn-warning">修改密码</button>
+          <button type="submit" ng-disabled='form.$invalid'  class="am-btn am-btn-primary">保存</button>
+        </div>
+
+      </div>
+  </div>
+    </form>
+</div>
+</div>
